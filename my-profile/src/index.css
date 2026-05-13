@@ -1,71 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --mouse-x: 50%;
-    --mouse-y: 50%;
-  }
-
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-slate-950 text-slate-300 antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    /* 上部に深みのあるグラデを敷いて立体感を出す */
-    background-image:
-      radial-gradient(at 20% 0%, rgba(13, 148, 136, 0.12) 0px, transparent 50%),
-      radial-gradient(at 80% 20%, rgba(56, 189, 248, 0.08) 0px, transparent 50%);
+    @apply text-slate-800 antialiased;
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      system-ui, sans-serif;
+    background:
+      radial-gradient(at 0% 0%, #fde2e4 0px, transparent 50%),
+      radial-gradient(at 100% 0%, #ffd6a5 0px, transparent 50%),
+      radial-gradient(at 100% 100%, #fecaca 0px, transparent 50%),
+      radial-gradient(at 0% 100%, #fed7aa 0px, transparent 50%),
+      #fff6ee;
     background-attachment: fixed;
+    min-height: 100vh;
   }
 
   ::selection {
-    @apply bg-emerald-400/30 text-slate-50;
-  }
-
-  a {
-    @apply transition-colors;
-  }
-
-  /* リンクや本文に読みやすい行間 */
-  p {
-    line-height: 1.75;
+    @apply bg-rose-200 text-slate-900;
   }
 }
 
 @layer components {
-  /* マウス追従スポットライト ─ #spotlight に適用 */
-  .spotlight {
-    position: fixed;
-    inset: 0;
-    z-index: 30;
-    pointer-events: none;
-    transition: background 0.12s ease-out;
-    background: radial-gradient(
-      700px circle at var(--mouse-x) var(--mouse-y),
-      rgba(94, 234, 212, 0.08),
-      transparent 40%
-    );
+  .card {
+    @apply rounded-3xl bg-white/90 p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(244,114,182,0.08)] backdrop-blur-sm;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .spotlight {
-      display: none;
-    }
+  .card-section-label {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-rose-500;
   }
 
-  /* Section の入場アニメーション */
   .reveal {
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(8px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
 
   .reveal.is-visible {
@@ -79,24 +54,5 @@
       transform: none;
       transition: none;
     }
-  }
-
-  /* セクション見出し（番号+ラベル）の装飾 */
-  .section-heading {
-    @apply flex items-center gap-4 text-2xl font-bold tracking-tight text-slate-100 md:text-3xl;
-  }
-  .section-heading::after {
-    content: '';
-    @apply hidden h-px flex-1 bg-slate-800 md:block;
-  }
-}
-
-@layer utilities {
-  .font-mono {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-
-  .text-balance {
-    text-wrap: balance;
   }
 }

@@ -5,168 +5,124 @@
 
 export const profile = {
   nameJa: '山田 太郎',
-  nameEn: 'Taro Yamada',
+  nameEn: 'Taro',
   initials: 'TY',
-  role: 'BtoB SaaS でマーケティングをやっています',
-  tagline:
-    '平日はインバウンドの数字を追いかけて、週末は家族と散歩したり、気になった社内の不便さを小さな道具にしてみたり。',
-  location: 'Tokyo, Japan',
+  age: 30,
+  role: 'マーケター',
+  company: 'BtoB SaaSの会社',
+  location: '東京',
+  origin: '神奈川',
   email: 'hello@yamada.example.dev',
   available: true,
+  greeting: 'はじめまして 👋',
 }
 
-export const navSections = [
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
-] as const
+export const headline =
+  '平日は数字とにらめっこ、休日は娘と公園とコーヒーの人。'
 
-export const links = [
-  { label: 'GitHub', href: 'https://github.com/yamada-taro', icon: 'Github' as const },
-  { label: 'X (Twitter)', href: 'https://x.com/yamada_taro', icon: 'Twitter' as const },
-  { label: 'note', href: 'https://note.com/yamada_taro', icon: 'BookOpen' as const },
-  { label: 'Email', href: 'mailto:hello@yamada.example.dev', icon: 'Mail' as const },
+export const heroPhotos = [
+  {
+    gradient: 'from-rose-300 via-amber-200 to-orange-300',
+    caption: '休日の朝、ベランダで',
+  },
+  {
+    gradient: 'from-sky-300 via-cyan-200 to-emerald-200',
+    caption: '近所のコーヒー店にて',
+  },
+  {
+    gradient: 'from-violet-300 via-fuchsia-200 to-rose-200',
+    caption: '出張で訪れた福岡',
+  },
+  {
+    gradient: 'from-amber-200 via-orange-200 to-rose-200',
+    caption: '家族で公園',
+  },
 ]
 
 export const about = [
-  `BtoB SaaS の会社でマーケティングを担当しています。
-  普段はリード獲得の数字を追ったり、営業さんと「次のキャンペーン何しよう」と相談したり、地味な手作業の改善案を書きためたり。`,
-  `もとは法人営業で、3年前にマーケ部に異動しました。営業現場のクセも分かるし、マーケ側の言い分も分かるので、間に立つ役回りが多いです。`,
-  `休みの日は妻と娘とよく公園に行きます。
-  最近は近所のサードウェーブ系コーヒー店を巡るのが趣味で、フィルター用の豆を月に2、3袋買ってしまうのが悩み。`,
+  'はじめまして、山田太郎です。',
+  '都内のBtoB SaaS企業でマーケティングをしています。もとは法人営業で、3年前にマーケ部に異動しました。',
+  '平日はリード獲得の数字を追う日々。休日は妻と1歳の娘と公園に行ったり、近所のコーヒー店を巡ったりしています。',
+  'のんびり話せる方と、いつかコーヒー一杯ぶんの時間を過ごせたら嬉しいです。',
 ]
 
-export type TimelineEntry = {
-  year: string
-  period: string
-  title: string
-  org: string
-  orgUrl?: string
-  detail: string
-  tags: string[]
-  current?: boolean
-}
+export type Interest = { emoji: string; label: string }
 
-export const timeline: TimelineEntry[] = [
-  {
-    year: '2023',
-    period: '2023 — Present',
-    title: 'Marketing',
-    org: 'Sample SaaS Inc.',
-    orgUrl: '#',
-    detail:
-      'インバウンドリード獲得を中心に、MA運用・ウェビナー企画・展示会準備まで。今期は商談化率の改善が一番の宿題。',
-    tags: ['BtoB Marketing', 'MA', 'Webinar', 'Event'],
-    current: true,
-  },
-  {
-    year: '2021',
-    period: '2021 — 2023',
-    title: 'Sales / Sales Ops',
-    org: 'Sample SaaS Inc.',
-    detail:
-      '法人営業に加えて、KPIダッシュボードの整備とSalesforceの運用ルール作りを担当。営業のメモを構造化する沼にハマる。',
-    tags: ['Sales', 'Salesforce', 'KPI'],
-  },
-  {
-    year: '2018',
-    period: '2018 — 2021',
-    title: 'Sales Representative',
-    org: 'Sample SaaS Inc.',
-    detail:
-      '新卒入社。中堅製造業の DX 担当者を相手に、SaaSの法人提案。3年目に表彰されたのが密かな自慢。',
-    tags: ['BtoB Sales'],
-  },
-  {
-    year: '2014',
-    period: '2014 — 2018',
-    title: 'B.A. in Business Administration',
-    org: 'Sample University',
-    detail:
-      'マーケティング論ゼミ。卒論はBtoB SaaSの導入意思決定をテーマに、企業10社にインタビューした。',
-    tags: ['Marketing', 'Research'],
-  },
+export const interests: Interest[] = [
+  { emoji: '☕️', label: 'コーヒー' },
+  { emoji: '📖', label: 'SF小説' },
+  { emoji: '🎬', label: '映画館' },
+  { emoji: '🐶', label: '犬と猫' },
+  { emoji: '✈️', label: '旅行' },
+  { emoji: '🥐', label: 'パン屋巡り' },
+  { emoji: '🎨', label: '美術館' },
+  { emoji: '⚽️', label: 'サッカー観戦' },
+  { emoji: '🍳', label: '休日の朝ごはん作り' },
+  { emoji: '🎧', label: 'Podcast' },
 ]
 
-export type Project = {
-  title: string
-  desc: string
-  tags: string[]
-  impact: string
-  href?: string
-}
+export type Fact = { emoji: string; label: string; value: string }
 
-export const projects: Project[] = [
-  {
-    title: '展示会フォローアップ・チェックリスト',
-    desc: '展示会で名刺交換した相手への翌日メール送付が抜けがちだったので、Googleフォーム入力→当日中にToDo自動生成する仕組みを内製。営業から「便利」と直接言われた最初の成功体験。',
-    tags: ['GAS', 'Notion API', 'Form'],
-    impact: 'チームで利用中',
-    href: '#',
-  },
-  {
-    title: '読書記録 mini-site',
-    desc: '読み終わった本を月ごとに並べる個人サイト。誰にも見せていないけど、ChatGPTに本のあらすじを書かせて貼っていたら、自分の趣味の偏りが見えて面白かった。',
-    tags: ['Astro', 'MDX'],
-    impact: '個人 / 公開予定',
-    href: '#',
-  },
-  {
-    title: 'ウェビナー集客の振り返りダッシュボード',
-    desc: 'Salesforceとフォームの集客データを毎週手集計していたのを、SupabaseとClaude Codeに頼んで自動化。月曜の朝会の準備が楽になった。',
-    tags: ['Supabase', 'React', 'Tailwind'],
-    impact: '社内ツール',
-    href: '#',
-  },
+export const quickFacts: Fact[] = [
+  { emoji: '💼', label: 'お仕事', value: 'マーケティング（BtoB SaaS）' },
+  { emoji: '🏙', label: '住まい', value: '東京 / 23区内' },
+  { emoji: '🌊', label: '出身', value: '神奈川' },
+  { emoji: '👨‍👩‍👧', label: '家族', value: '妻と1歳の娘' },
+  { emoji: '🎓', label: '学歴', value: 'サンプル大学（経済学部）' },
+  { emoji: '🍻', label: 'お酒', value: 'たまに（ビール派）' },
+  { emoji: '🚭', label: 'タバコ', value: '吸わない' },
+  { emoji: '🏃', label: '運動', value: '週末にジョギング' },
+  { emoji: '🗣', label: '言語', value: '日本語 / 英語は少しだけ' },
 ]
 
 export type CurrentlyItem = {
   label: string
-  icon: '🛠' | '📖' | '🎧' | '☕️'
+  icon: '🛠' | '📖' | '🎧' | '☕️' | '🎬'
   primary: string
   secondary: string
 }
 
 export const currently: CurrentlyItem[] = [
   {
-    label: 'Building',
+    label: 'いま読んでる',
+    icon: '📖',
+    primary: '『プロジェクト・ヘイル・メアリー』アンディ・ウィアー',
+    secondary: '通勤電車で読んでて、笑いをこらえるのが大変な日が多いです。',
+  },
+  {
+    label: 'いま淹れてる',
+    icon: '☕️',
+    primary: 'エチオピア / イルガチェフ G1',
+    secondary: '毎朝ハンドドリップ。雑味の出ない湯温を探っています。',
+  },
+  {
+    label: 'いま作ってる',
     icon: '🛠',
     primary: '家族用の写真アルバム共有サイト',
     secondary: '祖父母にもLINEなしで見せたくて。妻のリクエストで進行中。',
   },
-  {
-    label: 'Reading',
-    icon: '📖',
-    primary: '『プロジェクト・ヘイル・メアリー』アンディ・ウィアー',
-    secondary: '今年読んで一番ハマった本。電車で笑いをこらえるのが大変。',
-  },
-  {
-    label: 'Brewing',
-    icon: '☕️',
-    primary: 'エチオピア / イルガチェフ G1',
-    secondary: 'ハンドドリップで毎朝1杯。雑味が出ない湯温を探している。',
-  },
 ]
 
-export const certifications = ['日商簿記2級', 'Google Analytics 認定資格']
+export const workSnapshot = {
+  title: 'お仕事のこと',
+  paragraphs: [
+    '都内のBtoB SaaS企業で、インバウンドリード獲得を担当しています。MA運用・ウェビナー企画・展示会準備などが主な業務。',
+    '新卒で営業3年、その後営業企画を2年、いまマーケ3年目。営業側のクセも分かるので、間に立つことが多いです。',
+    '最近は、社内の小さな手作業を週末にコードで片付けるのが密かな楽しみです。',
+  ],
+}
 
-export const techStack = [
-  'TypeScript',
-  'React',
-  'Tailwind CSS',
-  'Astro',
-  'Supabase',
-  'PostgreSQL',
-  'Google Apps Script',
-  'Notion API',
-  'Salesforce',
-  'Figma',
-  'Claude Code',
+export type Value = { emoji: string; text: string }
+
+export const values: Value[] = [
+  { emoji: '🌱', text: '焦らないこと。長く続けるためには、軽い助走が大事。' },
+  { emoji: '🔧', text: '小さく作って試す。完璧より、まず動くものを。' },
+  { emoji: '🙇', text: '丁寧に挨拶する。仕事もプライベートも、これが土台。' },
 ]
 
 export const ctaSection = {
-  eyebrow: "Let's talk",
-  heading: '気軽に声をかけてください',
-  body:
-    'マーケや営業の現場で「これ手作業つらいな」と思うやつ、雑談ベースでも歓迎です。同業の人とも、社内の不便を片付けたい人とも、コーヒー一杯ぶんくらいの距離感で話せたら嬉しいです。',
+  eyebrow: 'メッセージ',
+  heading: 'コーヒー一杯ぶんの距離感で',
+  body: 'マーケや営業の現場の話、子育てのこと、コーヒー豆のこと、なんでも歓迎です。気軽にメッセージください。',
+  buttonLabel: 'メッセージを送る',
 }
