@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,17 +15,27 @@
   }
 
   body {
-    @apply bg-slate-900 text-slate-300 antialiased;
+    @apply bg-slate-950 text-slate-300 antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    /* 上部に深みのあるグラデを敷いて立体感を出す */
+    background-image:
+      radial-gradient(at 20% 0%, rgba(13, 148, 136, 0.12) 0px, transparent 50%),
+      radial-gradient(at 80% 20%, rgba(56, 189, 248, 0.08) 0px, transparent 50%);
+    background-attachment: fixed;
   }
 
   ::selection {
-    @apply bg-emerald-400/30 text-slate-100;
+    @apply bg-emerald-400/30 text-slate-50;
   }
 
   a {
     @apply transition-colors;
+  }
+
+  /* リンクや本文に読みやすい行間 */
+  p {
+    line-height: 1.75;
   }
 }
 
@@ -38,8 +48,8 @@
     pointer-events: none;
     transition: background 0.12s ease-out;
     background: radial-gradient(
-      600px circle at var(--mouse-x) var(--mouse-y),
-      rgba(94, 234, 212, 0.06),
+      700px circle at var(--mouse-x) var(--mouse-y),
+      rgba(94, 234, 212, 0.08),
       transparent 40%
     );
   }
@@ -54,7 +64,8 @@
   .reveal {
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal.is-visible {
@@ -68,6 +79,15 @@
       transform: none;
       transition: none;
     }
+  }
+
+  /* セクション見出し（番号+ラベル）の装飾 */
+  .section-heading {
+    @apply flex items-center gap-4 text-2xl font-bold tracking-tight text-slate-100 md:text-3xl;
+  }
+  .section-heading::after {
+    content: '';
+    @apply hidden h-px flex-1 bg-slate-800 md:block;
   }
 }
 
