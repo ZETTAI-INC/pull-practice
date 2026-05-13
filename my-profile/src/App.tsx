@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ArrowUpRight, BookOpen, Github, Mail, Twitter } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowRight, ArrowUpRight, BookOpen, Github, Mail, Twitter } from 'lucide-react'
 import {
   profile,
   navSections,
@@ -8,16 +8,23 @@ import {
   timeline,
   projects,
   certifications,
+  currently,
+  techStack,
+  ctaSection,
 } from '@/data/profile'
 
 const iconByName = { Github, Twitter, BookOpen, Mail } as const
 
 export default function App() {
+  useMouseSpotlight()
   return (
-    <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
-      <div className="lg:flex lg:justify-between lg:gap-4">
-        <Sidebar />
-        <Main />
+    <div className="relative">
+      <div id="spotlight" aria-hidden className="spotlight" />
+      <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+        <div className="lg:flex lg:justify-between lg:gap-4">
+          <Sidebar />
+          <Main />
+        </div>
       </div>
     </div>
   )
@@ -92,7 +99,7 @@ function Sidebar() {
           return (
             <li key={link.label}>
               <a
-                className="block text-slate-400 hover:text-slate-200"
+                className="block text-slate-400 transition-colors hover:text-slate-200"
                 href={link.href}
                 aria-label={link.label}
               >
@@ -128,6 +135,47 @@ function Main() {
             </p>
           ))}
         </div>
+
+        <div className="mt-10">
+          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">
+            Currently
+          </p>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-3">
+            {currently.map((item) => (
+              <li
+                key={item.label}
+                className="group rounded-lg border border-slate-800 bg-slate-900/40 p-4 transition-colors hover:border-emerald-400/30"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-base" aria-hidden>
+                    {item.icon}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/80">
+                    {item.label}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm font-medium text-slate-200">{item.primary}</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-500">{item.secondary}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-10">
+          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">
+            Tech I work with
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-1.5">
+            {techStack.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-md border border-slate-700/70 bg-slate-800/30 px-2.5 py-1 text-xs font-mono text-slate-400 transition-colors hover:border-emerald-400/40 hover:text-emerald-300"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
       </Section>
 
       <Section id="experience" number="02" label="Experience">
@@ -145,7 +193,7 @@ function Main() {
           ))}
         </ul>
         <div className="mt-12">
-          <p className="text-xs font-mono uppercase tracking-widest text-slate-500">
+          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">
             Certifications
           </p>
           <ul className="mt-3 flex flex-wrap gap-2">
@@ -160,6 +208,8 @@ function Main() {
           </ul>
         </div>
       </Section>
+
+      <CtaCallout />
 
       <footer className="mt-16 max-w-md pb-16 text-sm text-slate-500">
         <p>
@@ -188,11 +238,14 @@ function Section({
   label: string
   children: React.ReactNode
 }) {
+  const ref = useRef<HTMLElement | null>(null)
+  useReveal(ref)
   return (
     <section
       id={id}
+      ref={ref}
       aria-label={label}
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+      className="reveal mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
     >
       <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
         <h2 className="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">
@@ -252,9 +305,9 @@ function ProjectItem({ project }: { project: import('@/data/profile').Project })
         <div className="z-10 sm:order-2 sm:col-span-6">
           <h3>
             <a
-              className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-emerald-400 focus-visible:text-emerald-400"
+              className="inline-flex items-baseline font-medium leading-tight text-slate-200 transition-colors hover:text-emerald-400 focus-visible:text-emerald-400"
               href={project.href ?? '#'}
-              aria-label={`${project.title} (opens in a new tab)`}
+              aria-label={project.title}
             >
               <span>
                 {project.title}{' '}
@@ -279,10 +332,43 @@ function ProjectItem({ project }: { project: import('@/data/profile').Project })
         </div>
 
         <div className="z-10 mt-1 hidden sm:order-1 sm:col-span-2 sm:block">
-          <div className="aspect-video w-full rounded border border-slate-200/10 bg-gradient-to-br from-slate-800 to-slate-900 transition group-hover:border-slate-200/30" />
+          <div className="relative aspect-video w-full overflow-hidden rounded border border-slate-200/10 bg-gradient-to-br from-slate-800 to-slate-900 transition group-hover:border-emerald-400/40">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(94,234,212,0.18),transparent_50%)]" />
+            <div className="absolute bottom-2 right-2 font-mono text-[10px] uppercase tracking-widest text-slate-500 group-hover:text-emerald-300">
+              {project.tags[0] ?? 'demo'}
+            </div>
+          </div>
         </div>
       </div>
     </li>
+  )
+}
+
+function CtaCallout() {
+  const ref = useRef<HTMLElement | null>(null)
+  useReveal(ref)
+  return (
+    <section
+      ref={ref}
+      aria-label="Get in touch"
+      className="reveal mt-16 overflow-hidden rounded-xl border border-emerald-400/20 bg-emerald-400/5 p-8 md:p-10"
+    >
+      <p className="font-mono text-xs uppercase tracking-widest text-emerald-300">
+        {ctaSection.eyebrow}
+      </p>
+      <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-100 md:text-3xl">
+        {ctaSection.heading}
+      </h2>
+      <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300">{ctaSection.body}</p>
+      <a
+        href={`mailto:${profile.email}`}
+        className="group mt-6 inline-flex items-center gap-2 rounded-md border border-emerald-400/40 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-300 transition hover:border-emerald-400/70 hover:bg-emerald-400/20"
+      >
+        <Mail className="h-4 w-4" />
+        <span>{profile.email}</span>
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </a>
+    </section>
   )
 }
 
@@ -311,4 +397,45 @@ function useActiveSection(ids: readonly string[]): string | null {
   }, [ids])
 
   return active
+}
+
+function useReveal(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    if (typeof IntersectionObserver === 'undefined') {
+      node.classList.add('is-visible')
+      return
+    }
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          node.classList.add('is-visible')
+          obs.unobserve(node)
+        }
+      },
+      { threshold: 0.08 }
+    )
+    obs.observe(node)
+    return () => obs.disconnect()
+  }, [ref])
+}
+
+function useMouseSpotlight() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let raf = 0
+    const handler = (e: MouseEvent) => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`)
+        document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`)
+      })
+    }
+    window.addEventListener('mousemove', handler)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('mousemove', handler)
+    }
+  }, [])
 }

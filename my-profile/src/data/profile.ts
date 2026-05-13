@@ -119,3 +119,57 @@ export const projects: Project[] = [
 ]
 
 export const certifications = ['ITパスポート', '日商簿記2級', 'Google Analytics 認定資格']
+
+export type CurrentlyItem = {
+  label: string
+  icon: '🛠' | '📖' | '🎧' | '☕️'
+  primary: string
+  secondary: string
+}
+
+export const currently: CurrentlyItem[] = [
+  {
+    label: 'Building',
+    icon: '🛠',
+    primary: 'AI連携の社内ナレッジ検索ツール',
+    secondary: 'Internal Q&A Bot の第二弾。社内 Notion 1万ページを Claude API で対話可能に。',
+  },
+  {
+    label: 'Reading',
+    icon: '📖',
+    primary: '『LEAN ANALYTICS』Alistair Croll',
+    secondary: 'BtoB SaaS の MRR・チャーン分析を体系立て直すために。',
+  },
+  {
+    label: 'Listening',
+    icon: '🎧',
+    primary: 'Cinematic Lo-Fi / Late Night Study',
+    secondary: '夜中の Claude Code セッションのお供。集中力 +30%。',
+  },
+]
+
+export const techStack = [
+  'TypeScript',
+  'React',
+  'Tailwind CSS',
+  'shadcn/ui',
+  'Vite',
+  'Supabase',
+  'PostgreSQL',
+  'Edge Functions',
+  'Claude Code',
+  'Claude API',
+  'Anthropic SDK',
+  'Notion API',
+  'Slack API',
+  'GitHub Actions',
+  'Render',
+  'Figma',
+]
+
+export const ctaSection = {
+  eyebrow: 'Get in touch',
+  heading: 'AI と一緒に、なにか作ってみませんか',
+  body:
+    '社内ツールの試作・採用ページ・データ可視化など、「Excel で頑張ってる作業を Web アプリにしたい」と感じたタイミングで気軽に話しかけてください。30分の壁打ちは無料です。',
+}

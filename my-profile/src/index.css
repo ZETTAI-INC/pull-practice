@@ -5,6 +5,11 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -21,6 +26,48 @@
 
   a {
     @apply transition-colors;
+  }
+}
+
+@layer components {
+  /* マウス追従スポットライト ─ #spotlight に適用 */
+  .spotlight {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    transition: background 0.12s ease-out;
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y),
+      rgba(94, 234, 212, 0.06),
+      transparent 40%
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spotlight {
+      display: none;
+    }
+  }
+
+  /* Section の入場アニメーション */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }
 
