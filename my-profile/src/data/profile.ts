@@ -7,9 +7,9 @@ export const profile = {
   nameJa: '山田 太郎',
   nameEn: 'Taro Yamada',
   initials: 'TY',
-  role: 'Marketer building with AI.',
+  role: 'BtoB SaaS でマーケティングをやっています',
   tagline:
-    'BtoB SaaS のマーケティングと、Claude Code を使った社内ツールの自作を行ったり来たりしています。「AI に頼める人」を社内に増やす活動も。',
+    '平日はインバウンドの数字を追いかけて、週末は家族と散歩したり、気になった社内の不便さを小さな道具にしてみたり。',
   location: 'Tokyo, Japan',
   email: 'hello@yamada.example.dev',
   available: true,
@@ -29,9 +29,11 @@ export const links = [
 ]
 
 export const about = [
-  `BtoB SaaS 企業でマーケティングを担当している山田太郎です。新卒で営業職、2023年からマーケティング部に異動して、インバウンドマーケと営業企画を兼任しています。`,
-  `2024年からは Claude Code を中心とした AI ツールを業務に取り入れて、データ集計・資料作成・社内 Q&A の自動化を進めています。月60時間以上の工数を生み出すのが、最近の楽しみです。`,
-  `「コードが書けないマーケターでも、AI に頼めば業務アプリは作れる」をモットーに、社内へバイブコーディング文化を広めています。`,
+  `BtoB SaaS の会社でマーケティングを担当しています。
+  普段はリード獲得の数字を追ったり、営業さんと「次のキャンペーン何しよう」と相談したり、地味な手作業の改善案を書きためたり。`,
+  `もとは法人営業で、3年前にマーケ部に異動しました。営業現場のクセも分かるし、マーケ側の言い分も分かるので、間に立つ役回りが多いです。`,
+  `休みの日は妻と娘とよく公園に行きます。
+  最近は近所のサードウェーブ系コーヒー店を巡るのが趣味で、フィルター用の豆を月に2、3袋買ってしまうのが悩み。`,
 ]
 
 export type TimelineEntry = {
@@ -49,12 +51,12 @@ export const timeline: TimelineEntry[] = [
   {
     year: '2023',
     period: '2023 — Present',
-    title: 'Marketing Lead',
+    title: 'Marketing',
     org: 'Sample SaaS Inc.',
     orgUrl: '#',
     detail:
-      'BtoB SaaS のインバウンドマーケティングを統括。MA運用、コンテンツ企画、営業企画を兼任。Claude Code を使った社内ツール開発で、月60時間以上の工数削減を実現。',
-    tags: ['Marketing', 'Claude Code', 'Supabase', 'Notion API'],
+      'インバウンドリード獲得を中心に、MA運用・ウェビナー企画・展示会準備まで。今期は商談化率の改善が一番の宿題。',
+    tags: ['BtoB Marketing', 'MA', 'Webinar', 'Event'],
     current: true,
   },
   {
@@ -63,8 +65,8 @@ export const timeline: TimelineEntry[] = [
     title: 'Sales / Sales Ops',
     org: 'Sample SaaS Inc.',
     detail:
-      '新規顧客60社を担当し、営業表彰を受賞。営業企画として KPI 設計とダッシュボード運用を担当した。',
-    tags: ['Sales', 'KPI Design', 'Salesforce'],
+      '法人営業に加えて、KPIダッシュボードの整備とSalesforceの運用ルール作りを担当。営業のメモを構造化する沼にハマる。',
+    tags: ['Sales', 'Salesforce', 'KPI'],
   },
   {
     year: '2018',
@@ -72,8 +74,8 @@ export const timeline: TimelineEntry[] = [
     title: 'Sales Representative',
     org: 'Sample SaaS Inc.',
     detail:
-      '新卒入社。SaaS の法人向け提案を担当。3年目に年間目標 120% 達成。',
-    tags: ['Sales', 'BtoB'],
+      '新卒入社。中堅製造業の DX 担当者を相手に、SaaSの法人提案。3年目に表彰されたのが密かな自慢。',
+    tags: ['BtoB Sales'],
   },
   {
     year: '2014',
@@ -81,7 +83,7 @@ export const timeline: TimelineEntry[] = [
     title: 'B.A. in Business Administration',
     org: 'Sample University',
     detail:
-      'マーケティング論ゼミ所属。卒業論文「BtoB SaaS の導入意思決定プロセス」。',
+      'マーケティング論ゼミ。卒論はBtoB SaaSの導入意思決定をテーマに、企業10社にインタビューした。',
     tags: ['Marketing', 'Research'],
   },
 ]
@@ -96,29 +98,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: 'Sales KPI Dashboard',
-    desc: '営業チームの数値を毎週 Excel で手集計していたところを、Supabase と Claude Code で自動取り込み&可視化。営業会議の準備時間がほぼゼロに。',
-    tags: ['React', 'Tailwind', 'Supabase', 'Claude Code'],
-    impact: '−20h / month',
+    title: '展示会フォローアップ・チェックリスト',
+    desc: '展示会で名刺交換した相手への翌日メール送付が抜けがちだったので、Googleフォーム入力→当日中にToDo自動生成する仕組みを内製。営業から「便利」と直接言われた最初の成功体験。',
+    tags: ['GAS', 'Notion API', 'Form'],
+    impact: 'チームで利用中',
     href: '#',
   },
   {
-    title: 'Attendance × Slack Bot',
-    desc: '勤怠管理 SaaS と Slack を Supabase Edge Functions で連携。打刻忘れを本人に DM し、月末の未提出者を自動リマインド。',
-    tags: ['Edge Functions', 'Slack API', 'TypeScript'],
-    impact: '−15h / month',
+    title: '読書記録 mini-site',
+    desc: '読み終わった本を月ごとに並べる個人サイト。誰にも見せていないけど、ChatGPTに本のあらすじを書かせて貼っていたら、自分の趣味の偏りが見えて面白かった。',
+    tags: ['Astro', 'MDX'],
+    impact: '個人 / 公開予定',
     href: '#',
   },
   {
-    title: 'Internal Q&A Bot',
-    desc: '社内マニュアル200ページをベクトル検索 → Claude API で回答生成。新入社員からの繰り返し質問が 9 割消えた。',
-    tags: ['Claude API', 'Embeddings', 'Supabase'],
-    impact: '−25h / month',
+    title: 'ウェビナー集客の振り返りダッシュボード',
+    desc: 'Salesforceとフォームの集客データを毎週手集計していたのを、SupabaseとClaude Codeに頼んで自動化。月曜の朝会の準備が楽になった。',
+    tags: ['Supabase', 'React', 'Tailwind'],
+    impact: '社内ツール',
     href: '#',
   },
 ]
-
-export const certifications = ['ITパスポート', '日商簿記2級', 'Google Analytics 認定資格']
 
 export type CurrentlyItem = {
   label: string
@@ -131,45 +131,42 @@ export const currently: CurrentlyItem[] = [
   {
     label: 'Building',
     icon: '🛠',
-    primary: 'AI連携の社内ナレッジ検索ツール',
-    secondary: 'Internal Q&A Bot の第二弾。社内 Notion 1万ページを Claude API で対話可能に。',
+    primary: '家族用の写真アルバム共有サイト',
+    secondary: '祖父母にもLINEなしで見せたくて。妻のリクエストで進行中。',
   },
   {
     label: 'Reading',
     icon: '📖',
-    primary: '『LEAN ANALYTICS』Alistair Croll',
-    secondary: 'BtoB SaaS の MRR・チャーン分析を体系立て直すために。',
+    primary: '『プロジェクト・ヘイル・メアリー』アンディ・ウィアー',
+    secondary: '今年読んで一番ハマった本。電車で笑いをこらえるのが大変。',
   },
   {
-    label: 'Listening',
-    icon: '🎧',
-    primary: 'Cinematic Lo-Fi / Late Night Study',
-    secondary: '夜中の Claude Code セッションのお供。集中力 +30%。',
+    label: 'Brewing',
+    icon: '☕️',
+    primary: 'エチオピア / イルガチェフ G1',
+    secondary: 'ハンドドリップで毎朝1杯。雑味が出ない湯温を探している。',
   },
 ]
+
+export const certifications = ['日商簿記2級', 'Google Analytics 認定資格']
 
 export const techStack = [
   'TypeScript',
   'React',
   'Tailwind CSS',
-  'shadcn/ui',
-  'Vite',
+  'Astro',
   'Supabase',
   'PostgreSQL',
-  'Edge Functions',
-  'Claude Code',
-  'Claude API',
-  'Anthropic SDK',
+  'Google Apps Script',
   'Notion API',
-  'Slack API',
-  'GitHub Actions',
-  'Render',
+  'Salesforce',
   'Figma',
+  'Claude Code',
 ]
 
 export const ctaSection = {
-  eyebrow: 'Get in touch',
-  heading: 'AI と一緒に、なにか作ってみませんか',
+  eyebrow: "Let's talk",
+  heading: '気軽に声をかけてください',
   body:
-    '社内ツールの試作・採用ページ・データ可視化など、「Excel で頑張ってる作業を Web アプリにしたい」と感じたタイミングで気軽に話しかけてください。30分の壁打ちは無料です。',
+    'マーケや営業の現場で「これ手作業つらいな」と思うやつ、雑談ベースでも歓迎です。同業の人とも、社内の不便を片付けたい人とも、コーヒー一杯ぶんくらいの距離感で話せたら嬉しいです。',
 }
