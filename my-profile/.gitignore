@@ -1,0 +1,26 @@
+# 依存パッケージ
+node_modules
+.pnpm-store
+
+# ビルド成果物
+dist
+dist-ssr
+*.local
+
+# 環境変数（★絶対にGitHubに上げない）
+.env
+.env.*
+!.env.example
+
+# OS のゴミファイル
+.DS_Store
+Thumbs.db
+
+# エディタ
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.swp
+
+# ログ
+*.log
