@@ -27,9 +27,13 @@ pull-practice/
 │   ├── 📄 README.md                  … プロジェクトの読み方
 │   └── 📁 src/
 │       ├── 🚀 main.tsx
-│       ├── ⭐ App.tsx                 … 自己紹介ページ本体
+│       ├── ⭐ App.tsx                 … ページ全体の組み立て役（職務経歴書レイアウト）
 │       ├── 🎨 index.css
-│       ├── 📁 components/ui/card.tsx
+│       ├── 📁 data/
+│       │   └── ⭐ profile.ts         … 山田太郎の経歴・スキル・作品データ
+│       ├── 📁 components/ui/
+│       │   ├── card.tsx              … Card 部品
+│       │   └── badge.tsx             … Badge 部品（タグ・成果指標表示用）
 │       └── 📁 lib/utils.ts
 └── 📁 handbook/                      … あなたのためのハンドブック7冊
     ├── 📘 00-はじめに.md
